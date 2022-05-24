@@ -1,0 +1,23 @@
+{
+  "name": "nodesqlserver",
+  "version": "1.0.0",
+  "description": "Learning",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matekno/NodeSQLServer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matekno/NodeSQLServer/issues"
+  },
+  "homepage": "https://github.com/matekno/NodeSQLServer#readme",
+  "dependencies": {
+    "mssql": "^8.1.1"
+  }
+}
