@@ -1,7 +1,4 @@
-import config from "../dbconfig";
-import sql from "mssql";
-import DBUtils from "../utils/DBUtils";
-import Pizza from "../models/pizza";
+import DBUtils from "../utils/DBUtils.js";
 
 class PizzaService{
     getAll = async () => {
