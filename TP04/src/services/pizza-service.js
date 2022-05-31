@@ -1,6 +1,6 @@
 import DBUtils from "../utils/DBUtils.js";
 
-class PizzaService{
+class PizzaService{    
     getAll = async () => {
         await DBUtils.select("Pizzas");
         return result.recordsets;
