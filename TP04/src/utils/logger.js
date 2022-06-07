@@ -1,7 +1,9 @@
 import { createLogger, format, transports } from 'winston';
 const { splat, combine, timestamp, printf } = format;
+import TelegramLogger from 'winston-telegram';
+import options from '../config/telegramConfig.js';
 
-const logFormat = printf(({ timestamp, level, message, meta }) => {
+const logFormat = printf(({ timestamp, level, message }) => {
     return `${timestamp};${level};${JSON.stringify(message)}}`;
 });
 
@@ -10,20 +12,17 @@ const logger = createLogger({
         format.timestamp({
             format: 'YYYY-MM-DD HH:mm:ss'
         }),
-        // label({ label: 'right meow!' }),
         timestamp(),
         format.json(),
         format.colorize(),
         logFormat
     ),
     transports: [
-        new transports.Console({
-            // json: true,
-            // format: format.prettyPrint()
-        }),
+        new transports.Console(),
         new transports.File({ filename: 'combined.log' })
     ]
 });
 
+logger.add(new TelegramLogger(options))
 
 export default logger;
