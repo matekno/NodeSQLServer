@@ -1,3 +1,4 @@
+import config from "./config/dbconfig.js";
 import PizzaService from "./services/pizza-service.js";
 import logger from "./utils/logger.js";
 
