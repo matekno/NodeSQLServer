@@ -7,6 +7,7 @@ import logger from './utils/logger.js';
     let pool = await sql.connect(config);
     let result = await pool.request().query(query);
 
+
     // console.log(result.output); 
     // console.log(result.recordsets); // devuelve todo el resultado de la query
     // console.log(result.recordset); // devuelve el primer resultado de la query

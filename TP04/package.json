@@ -20,6 +20,7 @@
   "homepage": "https://github.com/matekno/NodeSQLServer#readme",
   "dependencies": {
     "mssql": "^8.1.1",
+    "nodemon": "^2.0.16",
     "winston": "^3.7.2"
   }
 }

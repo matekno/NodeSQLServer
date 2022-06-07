@@ -1,7 +1,7 @@
 const config = {
     user: 'Pizzas',
     password: 'Pizzas',
-    server: 'localhost',
+    server: 'ROOSEVELT\\SQLEXPRESS',
     database: "DAI-Pizzas",
     options:{
         trustServerCertificate: true,

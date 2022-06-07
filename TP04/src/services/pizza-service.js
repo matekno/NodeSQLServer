@@ -1,26 +1,29 @@
 import DBUtils from "../utils/DBUtils.js";
 
 class PizzaService{    
-    getAll = async () => {
-        await DBUtils.select("Pizzas");
-        return result.recordsets;
+    static getAll = async () => {
+        return (await DBUtils.select("Pizzas"));
     };
-    getById = async (id) => {
-        await DBUtils.where("Pizzas", `Id = ${id}`);
-        return result.recordsets;
+
+    static getById = async (id) => {
+        return await DBUtils.where("Pizzas", `Id=${id}`);
     };
-    insert = async (pizza) => {
-        await DBUtils.insert("Pizzas", "[Nombre], [LibreGluten], [Importe], [Descripcion]", `'${pizza.nombre}', '${pizza.libreGluten}' ,${pizza.importe}, '${pizza.descripcion}'`);
-        return result.recordsets;
-    }
-    update = async (pizza, id) => {
-        await DBUtils.update("Pizzas", `Nombre = '${pizza.nombre}', LibreGluten = '${pizza.libreGluten}', Importe = ${pizza.importe}, Descripcion = '${pizza.descripcion}'`, {key: "Id", value: id});
-        return result.recordsets;
-    }
-    deleteById = async (id) => {
-        await DBUtils.delete("Pizzas", {key: "Id", value: id});
-        return result.recordsets;
-    }
-}
+
+    static insert = async (pizza) => {
+        return await DBUtils.insert("Pizzas", "[Nombre], [LibreGluten], [Importe], [Descripcion]", `'${pizza.nombre}', '${pizza.libreGluten}' ,${pizza.importe}, '${pizza.descripcion}'`);
+    };
+
+    static update = async (pizza, id) => {
+        return await DBUtils.update("Pizzas", `Nombre = '${pizza.nombre}', LibreGluten = '${pizza.libreGluten}', Importe = ${pizza.importe}, Descripcion = '${pizza.descripcion}'`, {key: "Id", value: id});
+    };
+
+    static deleteById = async (id) => {
+        try {
+            return await DBUtils.delete("Pizzas", {key: "Id", value: id});
+        } catch (error) {
+            return error
+        }
+    };
+};
 
 export default PizzaService;
