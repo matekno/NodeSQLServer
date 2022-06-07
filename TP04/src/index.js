@@ -3,32 +3,82 @@ import logger from "./utils/logger.js";
 
 
 const getAll = async () => {
-    let pizzas = await PizzaService.getAll();
-    logger.log({
-        level: 'info',
-        message: pizzas.recordset,
-    });
-    // pizzas.recordset.map(pizza => {console.log(pizza)}) // no anda con mi logger
+    try {
+        const pizzas = await PizzaService.getAll();
+        logger.log({
+            level: 'info',
+            message: pizzas.recordset,
+        });
+    }
+    catch (error) {
+        logger.log({
+            level: 'error',
+            message: error.toString()
+        })
+    }
 }
 
 const getById = async () => {
-    let pizza = await PizzaService.getById(1);
-    console.log(pizza.recordset[0]);
+    try {
+        const pizza = await PizzaService.getById(1);
+        logger.log({
+            level: 'info',
+            message: pizzas.recordset[0],
+        })
+    }
+    catch (error) {
+        logger.log({
+            level: 'error',
+            message: error.toString()
+        })
+    }
 }
 
 const create = async (p) => {
-    let result = await PizzaService.insert(p);
-    console.log(result.rowsAffected);
+    try {
+        const result = await PizzaService.insert(p);
+        logger.log({
+            level: 'info',
+            message: result.rowsAffected,
+        })
+    } catch (error) {
+        logger.log({
+            level: 'error',
+            message: error.toString()
+        })
+    }
 }
 
 const update = async (p, id) => {
-    let result = await PizzaService.update(p, id);
-    console.log(result.rowsAffected);
+    try {
+        const result = await PizzaService.update(p, id);
+        logger.log({
+            level: 'info',
+            message: result.rowsAffected,
+        })
+    } catch (error) {
+        logger.log({
+            level: 'error',
+            message: error.toString()
+        })
+    }
+
 }
 
 const deleteById = async (id) => {
-    let result = await PizzaService.deleteById(id);
-    console.log(result.rowsAffected);
+    try {
+        const result = await PizzaService.deleteById(id);
+        logger.log({
+            level: 'info',
+            message: result.rowsAffected,
+        })
+
+    } catch (error) {
+        logger.log({
+            level: 'error',
+            message: error.toString()
+        })
+    }
 }
 
 
