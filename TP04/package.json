@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/matekno/NodeSQLServer#readme",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "mssql": "^8.1.1",
     "nodemon": "^2.0.16",
     "winston": "^3.7.2",
-    "winston-json-formatter": "^0.10.0"
+    "winston-json-formatter": "^0.10.0",
+    "winston-telegram": "^2.6.0"
   }
 }
