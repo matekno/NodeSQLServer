@@ -1,8 +1,10 @@
 import { createLogger, format, transports } from 'winston';
+const { splat, combine, timestamp, printf } = format;
 
-const { combine, timestamp, label, printf } = format;
-const myFormat = printf(({ level, message, timestamp }) => {
-    return `${timestamp} ${level}: ${message}`;
+import path from 'path';
+
+const logFormat = printf(({ timestamp, level, message, meta }) => {
+    return `${timestamp};${level};${JSON.stringify(message)}}`;
 });
 
 const logger = createLogger({
@@ -12,11 +14,17 @@ const logger = createLogger({
         }),
         // label({ label: 'right meow!' }),
         timestamp(),
+        splat(),
         format.colorize(),
-        myFormat
+        logFormat
     ),
-    transports: [new transports.Console()]
+    transports: [
+        new transports.Console({
+            json: true,
+            stringify: (obj) => JSON.stringify(obj)
+        }),
+        new transports.File({ filename: 'combined.log' })
+    ]
 });
-
 
 export default logger;

@@ -4,7 +4,8 @@ import logger from "./utils/logger.js";
 
 const getAll = async () => {
     let pizzas = await PizzaService.getAll();
-    pizzas.recordset.map(pizza => {console.log(pizza)}) // no anda con mi logger
+    logger.info(pizzas.recordset);
+    // pizzas.recordset.map(pizza => {console.log(pizza)}) // no anda con mi logger
 }
 
 const getById = async () => {
@@ -29,8 +30,8 @@ const deleteById = async (id) => {
 
 
 const p ={nombre: "Pizza de Jamon", libreGluten: true, importe: 10, descripcion: "Pizza de jamon con queso"};
-// getAll();   
+getAll();   
 // getById();
 // create(p);
 // update(p, 1);
-deleteById(12);
+// deleteById(12);
