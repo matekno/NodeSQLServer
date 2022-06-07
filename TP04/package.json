@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "nodemon ./src/server.js",
     "test": "test",
-    "dev": "nodemon ./src/indexExpress.js"
+    "dev": "nodemon ./src/learningExpress.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/matekno/NodeSQLServer#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mssql": "^8.1.1",
