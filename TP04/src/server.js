@@ -10,6 +10,10 @@ const port = 3000;
 app.use(cors());
 app.use("/api/pizzas", PizzaRouter);
 
+// app.get('/', (req, res) => {
+//     res.send('Hello World!');
+// });
+
 app.listen(port, () =>{
     logger.log({
         level: 'info',
