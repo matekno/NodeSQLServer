@@ -25,20 +25,23 @@ router.get('/', async (req, res) =>{
     }
 })
 
-router.get('/getById', async (req, res) =>{
+router.get('/:id', async (req, res) =>{
     try {
-        const pizza = await PizzaService.getById(req.query.id);
-        logger.log({
+        const pizza = await PizzaService.getById(req.params.id);
+        /*logger.log({
             level: 'info',
             message: pizza.recordset,
-        });
+        });*/
+        // console.log('en la funcion' + req.usuario);
+        // console.log('Estoy en GET' + new Date().toISOString());
+        res.locals.respuesta = pizza.recordset[0];
         res.send(pizza.recordset[0]);
     }
     catch (error){
-        logger.log({
+        /*logger.log({
             level: 'error',
             message: error.toString()
-        })
+        })*/
         res.status(400).send(error.toString());
     }
 });
@@ -50,7 +53,7 @@ router.post('/', async (req, res) =>{
         console.log(result.recordset)
         logger.log({
             level: 'info',
-            message: pizzas.recordset,
+            message: pizza.recordset,
         });
         res.json(`El ID de la pizza nueva es: ${result.recordset[0]}`); // no va lindo
     } catch (error) {
@@ -62,14 +65,14 @@ router.post('/', async (req, res) =>{
     }
 });
 
-router.put('/', async (req, res) =>{
+router.put('/:id', async (req, res) =>{
     try {
         const pizza = req.body;
-        const id = req.query.id;
+        const id = req.params.id;
         const result = await PizzaService.update(pizza, id);
         logger.log({
             level: 'info',
-            message: pizzas.recordset,
+            message: result.recordset,
         });
         res.json(result)
     } catch (error) {
@@ -81,9 +84,9 @@ router.put('/', async (req, res) =>{
     }
 });
 
-router.delete('/', async(req,res) =>{
+router.delete('/:id', async(req,res) =>{
     try {
-        const result = await PizzaService.deleteById(req.query.id);
+        const result = await PizzaService.deleteById(req.params.id);
         logger.log({
             level: 'info',
             message: result
