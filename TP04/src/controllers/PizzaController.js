@@ -7,9 +7,6 @@ const app = express();
 const port = 3000;
 const router = Router();
 
-app.use(express.json());
-
-
 router.get('/', async (req, res) =>{
     try {
         const pizzas = await PizzaService.getAll();
@@ -50,7 +47,12 @@ router.post('/', async (req, res) =>{
     try {
         const pizza = req.body;
         const result = await PizzaService.insert(pizza)
-        res.json(result);
+        console.log(result.recordset)
+        logger.log({
+            level: 'info',
+            message: pizzas.recordset,
+        });
+        res.json(`El ID de la pizza nueva es: ${result.recordset[0]}`); // no va lindo
     } catch (error) {
         logger.log({
             level: 'error',
@@ -58,8 +60,43 @@ router.post('/', async (req, res) =>{
         })
         res.status(400).send(error.toString());
     }
-
 });
+
+router.put('/', async (req, res) =>{
+    try {
+        const pizza = req.body;
+        const id = req.query.id;
+        const result = await PizzaService.update(pizza, id);
+        logger.log({
+            level: 'info',
+            message: pizzas.recordset,
+        });
+        res.json(result)
+    } catch (error) {
+        logger.log({
+            level: 'error',
+            message: error.toString()
+        })
+        res.status(400).send(error.toString());
+    }
+});
+
+router.delete('/', async(req,res) =>{
+    try {
+        const result = await PizzaService.deleteById(req.query.id);
+        logger.log({
+            level: 'info',
+            message: result
+        });
+        res.send(result)
+    } catch (error) {
+        logger.log({
+            level: 'error',
+            message: error.toString()
+        })
+        res.status(400).send(error.toString());
+    }
+})
 
 
 
